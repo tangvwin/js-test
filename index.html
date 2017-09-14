@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/style.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <!-- <script src="./words.js"></script> -->
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 <div>
@@ -52,20 +57,20 @@
             <a href="http://www.w3school.com.cn/js/">
                 <div class="col-lg-4 col-md-4">
                     <div class="card">
-                        <img src="https://spzone-simpleprogrammer.netdna-ssl.com/wp-content/uploads/2016/08/Learning-Your-First-Programming-language.png">
+                        <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fj6fu5zm2uj30zk0k00t5.jpg">
                         <h4>学习资源</h4>
                         <p>JavaScript是最适合初学者的语言之一，现在就可以点开下面的链接开始学习吧！</p>
                         <a href="http://www.w3school.com.cn/js/" class="blue-button">Read More</a>
                     </div>
                 </div>
             </a>
-            <a href="https://i.ytimg.com/vi/t0UCb3Wr-IU/maxresdefault.jpg">
+            <a href="https://web.xinshengdaxue.com/home/lessons">
                 <div class="col-lg-4 col-md-4">
                     <div class="card">
-                        <img src="https://i.ytimg.com/vi/t0UCb3Wr-IU/maxresdefault.jpg">
+                        <img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fjeacotp7kj30zk0k0wf6.jpg">
                         <h4>进阶课程</h4>
                         <p>还想继续提高的同学可以报新生大学的JavaScript课程哦！超级推荐徐高阳老师的课哦！</p>
-                        <a href="https://www.xinshengdaxue.com/home/lessons" class="blue-button">Read More</a>
+                        <a href="https://web.xinshengdaxue.com/home/lessons" class="blue-button">Read More</a>
                     </div>
                 </div>
             </a>
@@ -73,6 +78,133 @@
     </div>
 </div>
 
+<hr>
+
+<div id="app">
+
+
+
+       <div class="container">
+      <div class="panel panel-success col-md-6" >
+        <div class="panel-heading">
+          <h3 class="panel-title text-center">课程简介</h3>
+        </div>
+        <div class="panel-body">
+
+
+            <div class="content">
+              <a class="header">{{ courseInfo.title }}</a>
+              <div class="meta">
+                <span class="date">授课老师：{{ courseInfo.teacher }} </span>
+              </div>
+              <div class="description">
+                Github：<a href="https://github.com/xugy0926/getting-started-with-javascript">
+               getting-started-with-javascript
+              </div>
+
+            </a>
+            </div>
+            <div >
+
+                {{ courseInfo.startTime }} - {{ courseInfo.endTime }}
+
+            </div>
+
+            </div>
+            </div>
+
+
+
+
+
+    <div class="panel panel-info col-md-6">
+      <div class="panel-heading">
+        <h3 class="panel-title text-center">还有话想跟老师说？</h3>
+      </div>
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+            <label for="name">个人姓名</label>
+            <input v-model="nameString"  type="name" class="form-control" id="name" placeholder="请输入你的姓名">
+          </div>
+          <div class="form-group">
+            <label for="account">新大账号</label>
+            <input v-model="accountString" type="account" class="form-control" id="account" placeholder="请输入新大注册手机号码或邮箱">
+          </div>
+          <div class="form-group">
+            <label for="content">想说的话</label>
+            <input v-model="contentString" type="content" class="form-control" id="content" placeholder="请输入你想对徐老师说的话">
+          </div>
+
+          <div class="btn btn-primary" v-on:click="sendData">提交发送</div>
+      </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+      <!-- <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">我的心里话</h3>
+        </div>
+        <div class="panel-body">
+          <div class="words-pannel" v-for="item in wordsList">
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                    <img class="media-object avatar" v-bind:src="item.avatar" alt="...">
+                  </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">
+                  {{ item.name }}
+                </h4>
+                {{ item.words }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+      <div class="container">
+
+         <div class="well">
+           <hr>
+            <div class="words-pannel" v-for="item in wordsList">
+        		<a class="pull-left" href="#">
+          		<img class="media-object avatar" v-bind:src="item.avatar" alt="...">
+        		</a>
+        		<div class="media-body">
+          		<h4 class="media-heading">
+                               {{ item.name }}
+                          </h4>
+                <p class="text-right">By {{ item.name }}</p>
+                <p>{{ item.words }}</p>
+                <hr>
+
+             </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+<!-- 分开           -->
+
+
+
+
+
+
+
+
+<!-- 分开           -->
 
 <footer class="container" style="margin-top: 100px;">
     <p class="text-center">Copyright@2017 TangJianfeng
@@ -83,3 +215,72 @@
 
 </body>
 </html>
+
+
+<script>
+  // vue官网： https://cn.vuejs.org/v2/guide/
+  // 初始化Vue
+
+  var app = new Vue({
+    el: '#app',   // #app 和html中div#id的 app 对应
+    data: {
+      courseInfo: {},
+
+      wordsList: [],  // 变量wordsList可以在html使用
+      nameString: '',
+      accountString: '',
+      contentString: ''
+
+    },
+    methods: {
+      getCourseInfo: function() {
+      axios.get('https://js.xinshengdaxue.com/api/v1/learnJS/course/1/detail')
+        .then(function(response) {
+          if (response.data && response.data.code === 1) {
+            app.courseInfo = response.data.courseInfo;
+          } else {
+            alert('fetch data error.');
+          }
+        })
+        .catch(function (error) {
+          console.log(error);  // 函数执行过程中，如果出错，就会直接跳到这里，浏览器conosle打印错误日志
+        });
+    },
+      fetchData: function() {
+        axios.get('https://js.xinshengdaxue.com/api/v1/learnJS/course/1/words')
+          .then(function (response) {
+            app.wordsList = response.data.words;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      },
+      sendData: function() {  // 定义一个函数，axios post 出去三个参数，拿到response 后alert 结果，这里在 html 中绑定了一个 click 事件，一旦用户click按钮，就会触发这个函数执行
+        axios.post('https://js.xinshengdaxue.com/api/v1/learnJS/sayToMe', {
+          name: app.nameString, // 拿到表单的name字段
+          account: app.accountString, // 拿到表单的account字段
+          content: app.contentString  // 拿到表单的content字段
+        })
+        .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+        });
+        //TODO: 对老师说点什么呢？
+
+      }
+    }
+  });
+
+
+
+
+
+
+
+
+  app.getCourseInfo();
+
+  app.fetchData();
+</script>
